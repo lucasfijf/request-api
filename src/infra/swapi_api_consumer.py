@@ -3,6 +3,7 @@ from collections import namedtuple
 import requests
 from requests import Request
 from src.errors import HttpRequestError
+from src.data.interfaces import SwapiApiConsumerInterface
 
 class SwapiApiConsumer:
     """Class to consume swapi api with http requests"""

@@ -7,4 +7,10 @@ class SwapiApiConsumerInterface(ABC):
 
     @abstractmethod
     def get_starships(self, page: int) -> Tuple[int, Type[Request], Dict]:
+        """Must implement"""
+        raise NotImplementedError()
+
+    @abstractmethod
+    def get_starships_information(self, page: int) -> Tuple[int, Type[Request], Dict]:
+        """Must implement"""
         raise NotImplementedError()

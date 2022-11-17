@@ -10,6 +10,7 @@ class SwapiApiConsumer:
 
     def __init__(self) -> None:
         self.get_starships_response = namedtuple("GET_Starships", "status_code, request, response")
+        self.get_starship_information_response = namedtuple("GET_Starship_Info", "status_code, request, response")
 
     def get_starships(self, page: int) -> Tuple[int, Type[Request], Dict]:
         """Request starships in pagination
@@ -20,6 +21,32 @@ class SwapiApiConsumer:
             method="GET",
             url="https://swapi.dev/api/starships",
             params={"page": page}
+        )
+        request_prepared = request.prepare()
+
+        response = self.__send_http_request(request_prepared)
+        status_code = response.status_code
+
+        if status_code >= 200 and status_code <= 299:
+            return self.get_starships_response(
+                status_code=status_code,
+                request=request,
+                response=response.json()
+            )
+
+        raise HttpRequestError(
+            message=response.json()["detail"],
+            status_code=status_code
+        )
+
+    def get_starship_information(self, starship_id: int) -> Tuple[int, Type[Request], Dict]:
+        """Request starships in pagination
+        :param - starship_id: int with starship id selected
+        :return - tuple with status_code, request, response attributes
+        """
+        request = requests.Request(
+            method="GET",
+            url=f"https://swapi.dev/api/starships/{starship_id}"
         )
         request_prepared = request.prepare()
 

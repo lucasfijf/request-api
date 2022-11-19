@@ -16,8 +16,5 @@ async def request_adapter(request: Request, callback: Callable):
         "body": body
     }
 
-    try:
-        http_response = callback(http_request)
-        return http_response
-    except:
-        print('An error has occured')
+    http_response = callback(http_request)
+    return http_response

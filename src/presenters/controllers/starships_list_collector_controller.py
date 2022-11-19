@@ -1,7 +1,8 @@
 from typing import Type, Dict
 from src.domain.usecases.starships_list_collector import StarshipsListCollectorInterface
+from src.presenters.interfaces import ControllersInterface
 
-class StarshipsListCollectorController:
+class StarshipsListCollectorController(ControllersInterface):
     """List starships controller"""
 
     def __init__(self, starships_list_collector: Type[StarshipsListCollectorInterface]) -> None:

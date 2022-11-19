@@ -10,7 +10,7 @@ def test_find_starship():
     time = 4
 
     response = starship_information_collector.find_starship(starship_id, time)
-    
+
     assert api_consumer.get_starship_information_attributes["starship_id"] == starship_id
     assert isinstance(response, dict)
     assert "MGLT" in response
